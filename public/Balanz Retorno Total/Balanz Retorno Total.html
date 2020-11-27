@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!-- saved from url=(0082)https://www.fondosbalanz.com/fondos/embed/fondo-comun-de-inversion-invertir_global -->
+<html xmlns="http://www.w3.org/1999/xhtml" class=" js no-touch csstransforms3d csstransitions video webkit chrome mac js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="shortcut icon" href="https://www.fondosbalanz.com/images/favicon.png"><title>Balanz Retorno Total</title><link rel="stylesheet" href="./Balanz Retorno Total_files/style.css" type="text/css">
+    <script async="" src="./Balanz Retorno Total_files/analytics.js"></script><script src="./Balanz Retorno Total_files/amcharts.js" type="text/javascript"></script>
+    <script src="./Balanz Retorno Total_files/serial.js" type="text/javascript"></script>
+    <script src="./Balanz Retorno Total_files/amstock.js" type="text/javascript"></script>
+    <script src="./Balanz Retorno Total_files/es.js" type="text/javascript"></script>
+    <meta name="description" content="El Fondo Balanz Retorno Total te permite ganarle a la inflación y el dolar, excelentes rendimientos desde su inicio, volatilidad mínima">
+<meta name="keywords" content="Balanz Capital, Inversiones, Fondo Común de Inversión, Rentabilidad, volatilidad mínima, bonos, acciones, futuros, bolsa, MAE, Rofex">
+
+    <!-- mobile settings -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
+    <!-- WEB FONTS : use %7C instead of | (pipe) -->
+    <link href="./Balanz Retorno Total_files/css" rel="stylesheet" type="text/css">
+    <!-- CORE CSS -->
+    <link href="./Balanz Retorno Total_files/bootstrap.min.css" rel="stylesheet" type="text/css"><link rel="stylesheet" href="./Balanz Retorno Total_files/font-awesome.min.css"><link href="./Balanz Retorno Total_files/CF.min.css" rel="stylesheet" type="text/css"><link type="text/css" rel="Stylesheet" href="./Balanz Retorno Total_files/jquery-ui.min.css"><link href="./Balanz Retorno Total_files/fixes.css" rel="stylesheet" type="text/css"></head>
+<body>
+    <form name="frmMain" method="post" action="https://www.fondosbalanz.com/fondos/embed/fondo-comun-de-inversion-invertir_global?cms-block-code=fondosbalanz-4_-_fondos-fondo_invertir_global&amp;cms-content-culture=157&amp;cms-content-mode=3" id="frmMain">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE1ODg4MDQ3NzFkZL7pKjCSmStnIOhtt+jLYAeXbdCt//1Dwqr1tyg60J0D">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['frmMain'];
+if (!theForm) {
+    theForm = document.frmMain;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="./Balanz Retorno Total_files/WebResource.axd" type="text/javascript"></script>
+
+
+<script src="./Balanz Retorno Total_files/MicrosoftAjax.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('Error al cargar el marco de trabajo de cliente ASP.NET Ajax.');
+//]]>
+</script>
+
+<script src="./Balanz Retorno Total_files/MicrosoftAjaxWebForms.js" type="text/javascript"></script>
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('smMain', 'frmMain', [], [], [], 90, '');
+//]]>
+</script>
+
+
+        <section>
+            <div class="container">
+                <div class="row">
+<div class="col-lg-12">
+<h1 class="page-header" style="display: block;">Balanz Retorno Total&nbsp;&nbsp;<small style="display: inline-block;">Máximo Rendimiento</small></h1>
+
+<ol class="breadcrumb">
+	<li><a href="https://www.fondosbalanz.com/fondos/embed/fondo-comun-de-inversion-invertir_global#">Inicio</a></li>
+	<li><a href="https://www.fondosbalanz.com/fondos/embed/fondo-comun-de-inversion-invertir_global#">Fondos</a></li>
+	<li class="active">Balanz Retorno Total</li>
+</ol>
+</div>
+
+<div class="col-lg-12">
+<script type="text/javascript">	
+AmCharts.ready(function () {
+	$.ajax({
+		url: "/Service.asmx/GetHistoricoCuotapartes",
+		type: "POST", contentType: "application/json; charset=utf-8", dataType: "json",
+		success: function (response) {
+			var data = JSON.parse(response.d);
+            
+			console.log(data);
+			console.log($.grep(data, function (obj, index) { return new Date(obj.Fecha).getTime() >= new Date().getTime(); }));
+			
+			
+			Stockchart = new AmCharts.AmStockChart();
+			
+			var datasets = [];
+			var fondos = [
+				{ codigo: "1", nombre: "Balanz Retorno Total", color: "#0d0d5d"}
+			   , { codigo: "100", nombre: "Dólar", color: "#85bb65"}
+			   , { codigo: "101", nombre: "Badlar", color: "#B7B725"}
+			];
+			
+			for(var i = 0; i < fondos.length; i++) {
+				if ($.grep(data, function (obj, index) { return obj.CodFondo == fondos[i].codigo; }).length == 0) continue;
+				
+				var dt = new AmCharts.DataSet();
+				dt.title = fondos[i].nombre;
+				dt.fieldMappings = [{
+					fromField: "ValorCuotaparte",
+					toField: "ValorCuotaparte"
+				}];
+				dt.showInCompare = true;
+				dt.showInSelect = true;
+				dt.compared = (i == 0) ? false : true;
+				dt.dataProvider = $.grep(data, function (obj, index) { return obj.CodFondo == fondos[i].codigo && new Date(obj.Fecha).getTime() <= new Date().getTime(); });
+				dt.categoryField = "Fecha";
+				dt.color = fondos[i].color;			
+				datasets.push(dt);
+			}
+			
+			Stockchart.dataSets = datasets;
+			Stockchart.language = "es";
+		
+			// first stock panel
+			var stockPanel1 = new AmCharts.StockPanel();
+			stockPanel1.showCategoryAxis = true;
+			stockPanel1.percentHeight = 70;
+			
+			stockPanel1.autoMargins = false;
+			stockPanel1.marginTop = 300;
+			stockPanel1.marginBottom = 250;
+			//stockPanel1.marginLeft = 50;
+			
+
+			// graph of first stock panel
+			var graph1 = new AmCharts.StockGraph();
+			graph1.valueField = "ValorCuotaparte";
+			graph1.comparable = true;
+			graph1.compareField = "ValorCuotaparte";
+			graph1.bullet = "none";
+			graph1.bulletBorderColor = "#FFFFFF";
+			graph1.bulletBorderAlpha = 1;
+			graph1.balloonText = "[[title]]:<b>[[value]]</b>";
+			graph1.compareGraphBalloonText = "[[title]]:<b>[[value]]</b>";
+			graph1.compareGraphBullet = "none";
+			graph1.compareGraphBulletBorderColor = "#FFFFFF";
+			graph1.compareGraphBulletBorderAlpha = 1;
+			graph1.lineThickness = 3;
+			stockPanel1.addStockGraph(graph1);
+
+			// create stock legend
+			var stockLegend1 = new AmCharts.StockLegend();
+			stockLegend1.periodValueTextComparing = "[[percents.value.close]]%";
+			stockLegend1.periodValueTextRegular = "[[value.close]]";
+			stockPanel1.stockLegend = stockLegend1;
+
+			// set panels to the chart
+			Stockchart.panels = [stockPanel1];
+
+
+			// OTHER SETTINGS ////////////////////////////////////
+			var sbsettings = new AmCharts.ChartScrollbarSettings();
+			//sbsettings.graph = graph1;
+			sbsettings.enabled = false;
+			Stockchart.chartScrollbarSettings = sbsettings;
+
+			// CURSOR
+			var cursorSettings = new AmCharts.ChartCursorSettings();
+			cursorSettings.valueBalloonsEnabled = true;
+			Stockchart.chartCursorSettings = cursorSettings;
+
+
+			// PERIOD SELECTOR ///////////////////////////////////
+			var periodSelector = new AmCharts.PeriodSelector();
+			periodSelector.position = "bottom";
+			periodSelector.periods = [{
+				period: "DD",
+				count: 15,
+				label: "15 días"
+			}, {
+				period: "MM",
+				
+				count: 1,
+				label: "1 mes"
+			}, {
+				period: "YYYY",
+				count: 1,
+				label: "1 año"
+			}, {
+				period: "YTD",
+				selected: true,
+				label: "YTD"
+			}, {
+				period: "MAX",
+				selected: false,
+				label: "MAX"
+			}];
+			periodSelector.fromText = "Desde:";
+			periodSelector.toText = "hasta:";
+			Stockchart.periodSelector = periodSelector;
+			
+			var categoryAxis = new AmCharts.CategoryAxis();
+			categoryAxis.minPeriod = "DD";
+			categoryAxis.maxSeries = 5000;
+			Stockchart.categoryAxesSettings = categoryAxis;			
+			
+			Stockchart.addListener("rendered", function (event) {
+				document.getElementById("chartcurtain").style.display = "none";
+			});
+
+			Stockchart.write('chartdiv');
+		}
+	});	
+});
+</script>
+<div id="chartcurtain" style="width: 100%; height: 430px; position: absolute; top: 0px; left: 0px; z-index: 100; text-align: center; line-height: 300px; font-size: 20px; display: none;">Cargando grafico...</div>
+<div id="chartdiv" style="width: 100%; height: 430px;"><div class="amcharts-stock-div" style="position: relative;"><div class="amcharts-center-div"><div class="amcharts-panels-div" style="height: 396px;"><div class="amChartsPanel amcharts-stock-panel-div amcharts-stock-panel-div-stockPanel0" style="height: 396px; width: 100%; overflow: hidden; text-align: left;"><div class="amcharts-main-div" style="position: relative; width: 100%; height: 100%;"><div class="amChartsLegend amcharts-legend-div" style="overflow: hidden; position: relative; text-align: left; cursor: default; width: 940px; height: 24px;"><svg version="1.1" style="position: absolute; width: 940px; height: 24px; top: 0px; left: -0.5px;"><desc>JavaScript chart by amCharts 3.20.18</desc><g transform="translate(0,0)"><path cs="100,100" d="M0.5,0.5 L939.5,0.5 L939.5,23.5 L0.5,23.5 Z" fill="#FFFFFF" stroke="#000000" fill-opacity="0" stroke-width="1" stroke-opacity="0"></path><g transform="translate(0,4)"><g cursor="pointer" aria-label="Balanz Retorno Total" transform="translate(0,0)"><path cs="100,100" d="M-7.5,8.5 L8.5,8.5 L8.5,-7.5 L-7.5,-7.5 Z" fill="#00adee" stroke="#00adee" fill-opacity="1" stroke-width="1" stroke-opacity="1" transform="translate(8,8)"></path><g transform="translate(8,8)" visibility="hidden"><path cs="100,100" d="M-5.5,-5.5 L6.5,6.5" fill="none" stroke="#FFFFFF" stroke-width="3"></path><path cs="100,100" d="M-5.5,6.5 L6.5,-5.5" fill="none" stroke="#FFFFFF" stroke-width="3"></path></g><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(21,7)"><tspan y="6" x="0">Balanz Retorno Total</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(141,7)">70.67%</text><rect x="16" y="0" width="175.21875" height="18" rx="0" ry="0" stroke-width="0" stroke="none" fill="#fff" fill-opacity="0.005"></rect></g><g cursor="pointer" aria-label="Dólar" transform="translate(201,0)"><path cs="100,100" d="M-7.5,8.5 L8.5,8.5 L8.5,-7.5 L-7.5,-7.5 Z" fill="#85bb65" stroke="#85bb65" fill-opacity="1" stroke-width="1" stroke-opacity="1" transform="translate(8,8)"></path><g transform="translate(8,8)" visibility="hidden"><path cs="100,100" d="M-5.5,-5.5 L6.5,6.5" fill="none" stroke="#FFFFFF" stroke-width="3"></path><path cs="100,100" d="M-5.5,6.5 L6.5,-5.5" fill="none" stroke="#FFFFFF" stroke-width="3"></path></g><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(21,7)"><tspan y="6" x="0">Dólar</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(56,7)">33.35%</text><rect x="16" y="0" width="89.515625" height="18" rx="0" ry="0" stroke-width="0" stroke="none" fill="#fff" fill-opacity="0.005"></rect></g><g cursor="pointer" aria-label="Badlar" transform="translate(316,0)"><path cs="100,100" d="M-7.5,8.5 L8.5,8.5 L8.5,-7.5 L-7.5,-7.5 Z" fill="#B7B725" stroke="#B7B725" fill-opacity="1" stroke-width="1" stroke-opacity="1" transform="translate(8,8)"></path><g transform="translate(8,8)" visibility="hidden"><path cs="100,100" d="M-5.5,-5.5 L6.5,6.5" fill="none" stroke="#FFFFFF" stroke-width="3"></path><path cs="100,100" d="M-5.5,6.5 L6.5,-5.5" fill="none" stroke="#FFFFFF" stroke-width="3"></path></g><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(21,7)"><tspan y="6" x="0">Badlar</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(61,7)">%</text><rect x="16" y="0" width="95.375" height="18" rx="0" ry="0" stroke-width="0" stroke="none" fill="#fff" fill-opacity="0.005"></rect></g></g></g></svg></div><div class="amcharts-chart-div" style="overflow: hidden; position: relative; text-align: left; width: 940px; height: 372px; padding: 0px; cursor: default; touch-action: auto;"><svg version="1.1" style="position: absolute; width: 940px; height: 372px; top: 0px; left: -0.5px;"><desc>JavaScript chart by amCharts 3.20.18</desc><g><path cs="100,100" d="M0.5,0.5 L939.5,0.5 L939.5,371.5 L0.5,371.5 Z" fill="#FFFFFF" stroke="#000000" fill-opacity="0" stroke-width="1" stroke-opacity="0"></path><path cs="100,100" d="M0.5,0.5 L939.5,0.5 L939.5,343.5 L0.5,343.5 L0.5,0.5 Z" fill="#FFFFFF" stroke="#000000" fill-opacity="0" stroke-width="1" stroke-opacity="0" transform="translate(0,0)"></path></g><g><g transform="translate(0,0)"><g><path cs="100,100" d="M0.5,0.5 L0.5,5.5" fill="none" stroke-width="1" stroke-opacity="1" stroke="#000000" transform="translate(0,343)"></path><path cs="100,100" d="M0.5,343.5 L0.5,343.5 L0.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M88.5,0.5 L88.5,5.5" fill="none" stroke-width="1" stroke-opacity="1" stroke="#000000" transform="translate(0,343)"></path><path cs="100,100" d="M88.5,343.5 L88.5,343.5 L88.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M170.5,0.5 L170.5,5.5" fill="none" stroke-width="1" stroke-opacity="1" stroke="#000000" transform="translate(0,343)"></path><path cs="100,100" d="M170.5,343.5 L170.5,343.5 L170.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M258.5,0.5 L258.5,5.5" fill="none" stroke-width="1" stroke-opacity="1" stroke="#000000" transform="translate(0,343)"></path><path cs="100,100" d="M258.5,343.5 L258.5,343.5 L258.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M343.5,0.5 L343.5,5.5" fill="none" stroke-width="1" stroke-opacity="1" stroke="#000000" transform="translate(0,343)"></path><path cs="100,100" d="M343.5,343.5 L343.5,343.5 L343.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M431.5,0.5 L431.5,5.5" fill="none" stroke-width="1" stroke-opacity="1" stroke="#000000" transform="translate(0,343)"></path><path cs="100,100" d="M431.5,343.5 L431.5,343.5 L431.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M516.5,0.5 L516.5,5.5" fill="none" stroke-width="1" stroke-opacity="1" stroke="#000000" transform="translate(0,343)"></path><path cs="100,100" d="M516.5,343.5 L516.5,343.5 L516.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M604.5,0.5 L604.5,5.5" fill="none" stroke-width="1" stroke-opacity="1" stroke="#000000" transform="translate(0,343)"></path><path cs="100,100" d="M604.5,343.5 L604.5,343.5 L604.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M692.5,0.5 L692.5,5.5" fill="none" stroke-width="1" stroke-opacity="1" stroke="#000000" transform="translate(0,343)"></path><path cs="100,100" d="M692.5,343.5 L692.5,343.5 L692.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M777.5,0.5 L777.5,5.5" fill="none" stroke-width="1" stroke-opacity="1" stroke="#000000" transform="translate(0,343)"></path><path cs="100,100" d="M777.5,343.5 L777.5,343.5 L777.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M865.5,0.5 L865.5,5.5" fill="none" stroke-width="1" stroke-opacity="1" stroke="#000000" transform="translate(0,343)"></path><path cs="100,100" d="M865.5,343.5 L865.5,343.5 L865.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g></g><g transform="translate(0,0)" visibility="visible"><g><path cs="100,100" d="M0.5,343.5 L0.5,343.5 L939.5,343.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M0.5,305.5 L0.5,305.5 L939.5,305.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M0.5,267.5 L0.5,267.5 L939.5,267.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M0.5,229.5 L0.5,229.5 L939.5,229.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M0.5,191.5 L0.5,191.5 L939.5,191.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M0.5,152.5 L0.5,152.5 L939.5,152.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M0.5,114.5 L0.5,114.5 L939.5,114.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M0.5,76.5 L0.5,76.5 L939.5,76.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M0.5,38.5 L0.5,38.5 L939.5,38.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g><g><path cs="100,100" d="M0.5,0.5 L0.5,0.5 L939.5,0.5" fill="none" stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path></g></g></g><g transform="translate(0,0)" clip-path="url(#AmChartsEl-16)"><g visibility="hidden"></g></g><g></g><g></g><g></g><g><g transform="translate(0,0)"><g></g><g clip-path="url(#AmChartsEl-18)"><path cs="100,100" d="M-12.5,312.70742 L-3.5,305.38889 L4.5,290.8535 L7.5,294.87141 L16.5,291.65703 L18.5,284.29132 L21.5,266.32027 L24.5,232.01358 L27.5,221.33323 L35.5,232.6974 L38.5,242.5641 L41.5,235.91051 L44.5,232.5837 L47.5,225.58824 L55.5,214.22563 L58.5,207.1307 L61.5,214.54226 L64.5,212.75872 L67.5,210.30978 L75.5,218.54292 L78.5,215.72822 L81.5,217.38593 L84.5,215.68119 L87.5,216.22043 L95.5,217.24493 L98.5,213.84302 L101.5,216.11632 L104.5,213.99247 L106.5,215.54061 L115.5,211.85968 L118.5,228.94182 L121.5,227.46258 L123.5,235.84338 L126.5,230.51298 L135.5,221.85603 L138.5,221.60764 L140.5,220.58309 L143.5,222.84649 L146.5,218.43377 L160.5,222.54832 L163.5,225.72649 L166.5,225.91812 L174.5,219.63224 L177.5,213.46862 L180.5,207.99267 L183.5,203.50211 L186.5,205.32211 L194.5,220.67366 L197.5,216.9597 L200.5,216.79694 L203.5,223.78405 L206.5,223.59763 L214.5,231.39969 L217.5,234.5269 L220.5,244.50989 L223.5,246.62764 L226.5,243.91847 L240.5,253.47312 L243.5,251.98091 L245.5,245.58968 L254.5,239.63231 L260.5,233.67315 L262.5,236.06796 L265.5,237.08113 L274.5,235.03391 L277.5,234.29884 L279.5,234.26795 L294.5,223.02976 L296.5,216.99593 L299.5,205.66374 L302.5,208.64169 L305.5,201.6344 L313.5,191.41595 L316.5,187.89039 L319.5,187.44026 L322.5,186.85153 L325.5,187.82052 L333.5,180.60762 L336.5,159.47136 L339.5,166.01904 L342.5,159.63917 L353.5,162.70435 L356.5,152.72107 L359.5,153.36272 L362.5,152.0287 L365.5,151.20349 L373.5,145.05286 L376.5,139.36609 L379.5,134.27209 L382.5,137.13536 L384.5,137.76869 L393.5,137.69798 L396.5,139.25601 L399.5,136.27833 L401.5,134.16853 L404.5,138.38704 L416.5,134.45722 L418.5,135.41898 L421.5,133.24464 L424.5,135.33894 L433.5,131.28937 L435.5,130.75295 L438.5,126.02287 L441.5,126.09136 L444.5,123.09161 L452.5,118.45056 L455.5,122.02724 L458.5,119.83052 L461.5,123.24058 L464.5,126.00958 L475.5,126.22431 L478.5,128.13279 L481.5,130.22799 L484.5,122.95248 L492.5,123.28275 L495.5,123.37937 L498.5,123.12744 L501.5,121.14534 L504.5,123.95402 L512.5,124.20028 L515.5,124.40035 L518.5,118.43126 L521.5,117.76574 L523.5,118.52933 L532.5,110.67079 L535.5,110.71264 L538.5,108.54607 L552.5,106.54501 L555.5,104.88384 L557.5,103.23547 L560.5,102.25959 L563.5,99.36786 L572.5,98.38876 L574.5,95.50043 L577.5,92.78453 L580.5,91.42208 L583.5,90.63935 L591.5,87.07067 L594.5,86.73947 L597.5,87.10067 L600.5,83.45604 L603.5,80.1774 L611.5,72.67071 L614.5,72.06962 L617.5,71.13203 L620.5,68.63437 L623.5,66.34908 L631.5,62.93146 L634.5,66.42571 L637.5,69.21713 L640.5,69.21501 L643.5,73.24616 L654.5,76.74613 L657.5,74.81549 L660.5,72.40557 L662.5,70.12346 L671.5,70.4348 L674.5,71.20271 L677.5,74.67948 L679.5,80.92551 L682.5,73.28748 L691.5,69.98237 L694.5,71.06728 L696.5,75.74474 L699.5,76.89907 L702.5,76.15653 L711.5,75.82464 L713.5,76.11291 L716.5,72.45963 L719.5,71.09746 L722.5,71.348 L730.5,74.47943 L733.5,76.27168 L736.5,82.88847 L739.5,85.94066 L742.5,79.79458 L750.5,80.24885 L753.5,77.62455 L756.5,78.11951 L759.5,78.10512 L762.5,75.93441 L770.5,74.88098 L773.5,72.04396 L776.5,73.65073 L779.5,70.68958 L782.5,66.43278 L790.5,64.86744 L793.5,66.49016 L796.5,67.62279 L799.5,63.89398 L801.5,62.90205 L813.5,62.56802 L816.5,58.35345 L818.5,54.60149 L821.5,50.58125 L830.5,49.50517 L833.5,46.93415 L835.5,44.73716 L838.5,39.40288 L841.5,39.51853 L850.5,47.77082 L852.5,57.06583 L855.5,64.72986 L858.5,61.70526 L861.5,61.55943 L869.5,57.33764 L872.5,54.60632 L875.5,52.59219 L878.5,46.6998 L889.5,42.95178 L892.5,39.15823 L895.5,37.19866 L898.5,42.23599 L901.5,39.47546 L909.5,36.07549 L912.5,35.88497 L915.5,36.33135 L918.5,34.76202 L921.5,34.46483 L932.5,27.40927 L935.5,26.20063 L938.5,24.1518 M0,0 L0,0" fill="none" stroke-width="3" stroke-opacity="1" stroke="#00adee" stroke-linejoin="round"></path></g><clippath id="AmChartsEl-18"><rect x="0" y="0" width="939" height="343" rx="0" ry="0" stroke-width="0"></rect></clippath><g></g></g><g transform="translate(0,0)"><g></g><g clip-path="url(#AmChartsEl-19)"><path cs="100,100" d="M-12.5,305.00606 L-3.5,305.38889 L4.5,305.00606 L7.5,305.5165 L16.5,305.5165 L18.5,305.5165 L21.5,305.5165 L24.5,305.5165 L27.5,305.5165 L35.5,305.45269 L38.5,304.62322 L41.5,303.92136 L44.5,304.62322 L47.5,304.49561 L55.5,304.24039 L58.5,303.92136 L61.5,303.66614 L64.5,303.85755 L67.5,303.79375 L75.5,303.72994 L78.5,303.2195 L81.5,303.15569 L84.5,302.83666 L87.5,302.70905 L95.5,302.071 L98.5,301.30533 L101.5,300.60347 L104.5,300.53966 L106.5,299.9016 L115.5,299.32735 L118.5,298.05124 L121.5,297.15796 L123.5,296.4561 L126.5,295.43521 L135.5,294.98857 L138.5,293.64865 L140.5,293.71246 L143.5,293.26582 L146.5,292.88298 L160.5,292.56395 L163.5,290.96881 L166.5,290.64979 L174.5,290.20315 L177.5,294.09529 L180.5,286.37481 L183.5,289.24606 L186.5,288.86323 L194.5,288.48039 L197.5,288.16137 L200.5,287.77853 L203.5,287.26809 L206.5,290.90501 L214.5,290.90501 L217.5,284.90728 L220.5,284.014 L223.5,283.05691 L226.5,281.65319 L240.5,280.24947 L243.5,278.46291 L245.5,277.31441 L254.5,276.1659 L260.5,275.78307 L262.5,275.40024 L265.5,274.18793 L274.5,272.97562 L277.5,272.46518 L279.5,271.95473 L294.5,271.38048 L296.5,269.97676 L299.5,269.21109 L302.5,268.44542 L305.5,267.67975 L313.5,266.91409 L316.5,266.14842 L319.5,265.44656 L322.5,264.55328 L325.5,263.97903 L333.5,263.27716 L336.5,262.63911 L339.5,262.00105 L342.5,261.23538 L353.5,260.66113 L356.5,260.08688 L359.5,259.64024 L362.5,259.00219 L365.5,258.42793 L373.5,257.91749 L376.5,257.27943 L379.5,256.70518 L382.5,256.19474 L384.5,255.55668 L393.5,254.98243 L396.5,254.40818 L399.5,253.89773 L401.5,253.25968 L404.5,252.68543 L416.5,252.11118 L418.5,251.53693 L421.5,250.96267 L424.5,250.38842 L433.5,249.81417 L435.5,249.23992 L438.5,248.72948 L441.5,248.09142 L444.5,247.51717 L452.5,246.94292 L455.5,246.36867 L458.5,245.79442 L461.5,245.22017 L464.5,244.90114 L475.5,244.5183 L478.5,242.98697 L481.5,242.60414 L484.5,242.1575 L492.5,241.77466 L495.5,240.68997 L498.5,240.30713 L501.5,239.86049 L504.5,239.47766 L512.5,239.09482 L515.5,237.94632 L518.5,237.56349 L521.5,237.18066 L523.5,236.79782 L532.5,236.41499 L535.5,235.26649 L538.5,234.94746 L552.5,234.50082 L555.5,232.58665 L557.5,232.20382 L560.5,231.82098 L563.5,231.43815 L572.5,231.05531 L574.5,229.90681 L577.5,229.52398 L580.5,229.14114 L583.5,228.75831 L591.5,228.37548 L594.5,227.22698 L597.5,226.84414 L600.5,226.46131 L603.5,226.07847 L611.5,225.69564 L614.5,224.41953 L617.5,224.1005 L620.5,223.78147 L623.5,223.27103 L631.5,222.82439 L634.5,221.67588 L637.5,221.35686 L640.5,221.03783 L643.5,220.65499 L654.5,220.33597 L657.5,218.80463 L660.5,218.29418 L662.5,217.97516 L671.5,217.65613 L674.5,216.69904 L677.5,216.1886 L679.5,215.86957 L682.5,215.35913 L691.5,214.97629 L694.5,213.82779 L696.5,213.38115 L699.5,212.93451 L702.5,212.55168 L711.5,212.16884 L713.5,210.82892 L716.5,210.44609 L719.5,210.06326 L722.5,209.61662 L730.5,209.16998 L733.5,207.83006 L736.5,207.38342 L739.5,207.00059 L742.5,206.55395 L750.5,206.17111 L753.5,204.83119 L756.5,204.44836 L759.5,204.00172 L762.5,203.61889 L770.5,203.17225 L773.5,201.83233 L776.5,201.44949 L779.5,201.06666 L782.5,200.62002 L790.5,196.15363 L793.5,195.77079 L796.5,195.32415 L799.5,195.13274 L801.5,195.13274 L813.5,194.87751 L816.5,193.09096 L818.5,192.77193 L821.5,192.83573 L830.5,192.5167 L833.5,192.13387 L835.5,191.49581 L838.5,191.04917 L841.5,188.94359 L850.5,188.62456 L852.5,187.79509 L855.5,187.53986 L858.5,187.47606 L861.5,187.53986 L869.5,187.41225 L872.5,185.05144 L875.5,183.52011 L878.5,182.88205 L889.5,182.43541 L892.5,180.84027 L895.5,180.32983 L898.5,179.94699 L901.5,179.50035 L909.5,178.28805 L912.5,176.88432 L915.5,176.43768 L918.5,175.73582 L921.5,174.90635 L932.5,174.45971 L935.5,172.22651 L938.5,171.65226 M0,0 L0,0" fill="none" stroke-width="1" stroke-opacity="1" stroke="#85bb65" stroke-linejoin="round"></path></g><clippath id="AmChartsEl-19"><rect x="0" y="0" width="939" height="343" rx="0" ry="0" stroke-width="0"></rect></clippath><g></g></g><g transform="translate(0,0)"><g></g></g></g><g></g><g><path cs="100,100" d="M0.5,305.5 L939.5,305.5 L939.5,305.5" fill="none" stroke-width="1" stroke-opacity="0.3" stroke="#000000" transform="translate(0,0)"></path><g><path cs="100,100" d="M0.5,0.5 L939.5,0.5" fill="none" stroke-width="1" stroke-opacity="1" stroke="#000000" transform="translate(0,343)"></path></g><g><path cs="100,100" d="M0.5,0.5 L0.5,343.5" fill="none" stroke-width="1" stroke-opacity="0" stroke="#000000" transform="translate(0,0)" visibility="visible"></path></g></g><g><g transform="translate(0,0)" clip-path="url(#AmChartsEl-17)" style="pointer-events: none;"><path cs="100,100" d="M0.5,0.5 L0.5,0.5 L0.5,343.5" fill="none" stroke-width="1" stroke-opacity="1" stroke="#CC0000" visibility="visible" transform="translate(909,0)"></path><path cs="100,100" d="M0.5,0.5 L939.5,0.5 L939.5,0.5" fill="none" stroke-width="1" stroke="#CC0000" visibility="hidden" transform="translate(0,186)"></path></g><clippath id="AmChartsEl-17"><rect x="0" y="0" width="939" height="343" rx="0" ry="0" stroke-width="0"></rect></clippath></g><g></g><g><g transform="translate(0,0)"></g><g transform="translate(0,0)"></g><g transform="translate(0,0)"></g></g><g><g></g></g><g><g transform="translate(0,0)" visibility="visible"><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" font-weight="bold" text-anchor="middle" transform="translate(43.97129909519314,355.5)"><tspan y="6" x="0">2020</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="middle" transform="translate(131.97129909519313,355.5)"><tspan y="6" x="0">Feb</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="middle" transform="translate(213.97129909519313,355.5)"><tspan y="6" x="0">Mar</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="middle" transform="translate(301.97129909519316,355.5)"><tspan y="6" x="0">Abr</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="middle" transform="translate(386.97129909519316,355.5)"><tspan y="6" x="0">May</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="middle" transform="translate(474.97129909519316,355.5)"><tspan y="6" x="0">Jun</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="middle" transform="translate(559.9712990951931,355.5)"><tspan y="6" x="0">Jul</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="middle" transform="translate(647.9712990951931,355.5)"><tspan y="6" x="0">Ago</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="middle" transform="translate(735.9712990951931,355.5)"><tspan y="6" x="0">Sep</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="middle" transform="translate(820.9712990951931,355.5)"><tspan y="6" x="0">Oct</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="middle" transform="translate(908.9712990951931,355.5)"><tspan y="6" x="0">Nov</tspan></text></g><g transform="translate(0,0)" visibility="visible"><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(4,335.5)"><tspan y="6" x="0">-10%</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(4,297.5)"><tspan y="6" x="0">0%</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(4,259.5)"><tspan y="6" x="0">10%</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(4,221.5)"><tspan y="6" x="0">20%</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(4,183.5)"><tspan y="6" x="0">30%</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(4,144.5)"><tspan y="6" x="0">40%</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(4,106.5)"><tspan y="6" x="0">50%</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(4,68.5)"><tspan y="6" x="0">60%</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(4,30.5)"><tspan y="6" x="0">70%</tspan></text><text y="6" fill="#000000" font-family="Verdana" font-size="11px" opacity="1" text-anchor="start" transform="translate(4,-1)"><tspan y="6" x="0"> </tspan></text></g></g><g></g><g transform="translate(0,0)"><g transform="translate(816,165.78804620793565) scale(1)" style="pointer-events: none;" visibility="visible"><path cs="100,100" d="M86.5,0.5 L86.5,6.5 L92.5,12.5 L86.5,18.5 L86.5,24.5 L0.5,24.5 L0.5,0.5 L86.5,0.5 Z" fill="#FFFFFF" stroke="#000000" fill-opacity="0" stroke-width="2" stroke-opacity="0.4" transform="translate(1,1)"></path><path cs="100,100" d="M86.5,0.5 L86.5,6.5 L92.5,12.5 L86.5,18.5 L86.5,24.5 L0.5,24.5 L0.5,0.5 L86.5,0.5 Z" fill="#FFFFFF" stroke="#85bb65" fill-opacity="0.8" stroke-width="2" stroke-opacity="1"></path></g><g transform="translate(715,23.575486629528427) scale(1)" style="pointer-events: none;" visibility="visible"><path cs="100,100" d="M187.5,0.5 L187.5,6.5 L193.5,12.5 L187.5,18.5 L187.5,24.5 L0.5,24.5 L0.5,0.5 L187.5,0.5 Z" fill="#FFFFFF" stroke="#000000" fill-opacity="0" stroke-width="2" stroke-opacity="0.4" transform="translate(1,1)"></path><path cs="100,100" d="M187.5,0.5 L187.5,6.5 L193.5,12.5 L187.5,18.5 L187.5,24.5 L0.5,24.5 L0.5,0.5 L187.5,0.5 Z" fill="#FFFFFF" stroke="#00adee" fill-opacity="0.8" stroke-width="2" stroke-opacity="1"></path></g><g transform="translate(847,343) scale(1)" style="pointer-events: none;"><rect x="0.5" y="0.5" width="91" height="24" rx="0" ry="0" stroke-width="1" fill="#CC0000" stroke="#CC0000" fill-opacity="1" stroke-opacity="1"></rect></g></g><g></g><g></g><clippath id="AmChartsEl-16"><rect x="-1" y="-1" width="941" height="345" rx="0" ry="0" stroke-width="0"></rect></clippath></svg><a href="http://www.amcharts.com/javascript-charts/" title="JavaScript charts" style="position: absolute; text-decoration: none; color: rgb(0, 0, 0); font-family: Verdana; font-size: 11px; opacity: 0.7; display: block; left: 816px; top: 5px;">JS chart by amCharts</a><div class="amcharts-balloon-div amcharts-balloon-div-comparedGraph_graphAuto0_1606492238902_ds2" style="pointer-events: none; position: absolute; left: 825px; top: 169.788px;"><div style="text-align:center; max-width:220px; font-size:11px; color:#000000; font-family:Verdana">Dólar:<b>79.65</b></div></div><div class="amcharts-balloon-div amcharts-balloon-div-graphAuto0_1606492238902" style="pointer-events: none; position: absolute; left: 724px; top: 27.5755px;"><div style="text-align:center; max-width:220px; font-size:11px; color:#000000; font-family:Verdana">Balanz Retorno Total:<b>24.6325</b></div></div><div class="amcharts-balloon-div amcharts-balloon-div-categoryAxis" style="pointer-events: none; position: absolute; left: 856px; top: 347px;"><div style="text-align:center; max-width:220px; font-size:11px; color:#FFFFFF; font-family:Verdana">Nov 16, 2020</div></div></div></div></div></div><div class="amChartsPeriodSelector amcharts-period-selector-div" style="margin-top: 8px;"><div style="display: inline;">Desde:<input class="amChartsInputField amcharts-start-date-input" style="text-align: center; width: 100px;"> hasta:<input class="amChartsInputField amcharts-end-date-input" style="text-align: center; width: 100px;"></div><div style="float: right; display: inline;">Zoom: <input type="button" value="15 días" class="amChartsButton amcharts-period-input" style="box-sizing: border-box; display: inline;"><input type="button" value="1 mes" class="amChartsButton amcharts-period-input" style="box-sizing: border-box; display: inline;"><input type="button" value="1 año" class="amChartsButton amcharts-period-input" style="box-sizing: border-box; display: inline;"><input type="button" value="YTD" class="amChartsButtonSelected amcharts-period-input-selected" style="box-sizing: border-box; display: inline;"><input type="button" value="MAX" class="amChartsButton amcharts-period-input" style="box-sizing: border-box; display: inline;"></div></div></div></div></div>
+</div>
+
+<div class="col-lg-12">
+<h2 class="page-header" style="display: block;">Caracteristicas del Fondo Balanz Retorno Total</h2>
+<p></p><p>Balanz Retorno Total está diseñado para obtener el máximo rendimiento posible en un horizonte de mediano y largo plazo.</p>
+
+<p>Este fondo cuenta con una administración muy activa para aprovechar las oportunidades de mercado, dentro de un marco de activos de bajo riesgo.<br>
+<br>
+Ideal para los que buscan altos rendimientos minimizando la probabilidad de pérdida de capital.</p>
+
+<p>Nuestro equipo de expertos invierte diversificadamente en una cartera de bienes que se distribuyen de acuerdo a nuestra estrategia de inversión, teniendo en cuenta el momentum ideal para la compra.<br>
+<br>
+Liquidez en 48&nbsp;horas.</p>
+<p></p>
+</div>
+
+<div class="col-lg-12">
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered">
+			<thead>
+			  <tr>
+				<th>Fondo</th>
+				<th>Cuotaparte</th>
+				<th>Var. Diaria (%)</th>
+				<th>Var. Mensual (%)</th>
+				<th>Var. a/a (%)</th>
+				<th>Var. Anual (%)</th>
+				<th>Var. 2019 (%)</th>
+				<th>Var. 2018 (%)</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<td>BALANZ RETORNO TOTAL Clase A</td>
+				<td>25,084067</td>
+				<td>0,31</td>
+				<td>3,70</td>
+				<td>188,11</td>
+				<td>73,79</td>
+				<td>39,33</td>
+				<td>40,71</td>
+			  </tr>
+			  <tr>
+				<td>BALANZ RETORNO TOTAL Clase B</td>
+				<td>25,556782</td>
+				<td>0,31</td>
+				<td>3,72</td>
+				<td>188,80</td>
+				<td>74,17</td>
+				<td>39,61</td>
+				<td>40,99</td>
+			  </tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="col-lg-12">
+<div class="row">
+<div class="col-md-4"><a class="btn btn-3d btn-xlg btn-default" href="https://cms.balanz.com/PFS/052829_rt20201120.pdf" target="_blank">INFORME SEMANAL<span class="block font-lato">Click Aquí</span></a></div>
+<div class="col-md-4"><a class="btn btn-3d btn-xlg btn-default" href="https://cms.balanz.com/PFS/050651_20201005t.o.balanzretornototalex.balanzinvertirglobalbalanz.pdf" target="_blank">REGLAMENTO DE GESTIÔN<span class="block font-lato">Click Aquí</span></a></div>
+<div class="col-md-4"><a class="btn btn-3d btn-xlg btn-default" href="https://www.bloomberg.com/quote/BAINGLB:AR" target="_blank">BALANZ RETORNO TOTAL EN BLOOMBERG<span class="block font-lato">Click Aquí</span></a></div>
+</div>
+
+</div>
+</div>  
+
+                
+                <div class="row">
+<div class="col-lg-12">
+<h2 class="page-header" style="display: block;">Sobre Nuestros Fondos Comunes de Inversión</h2>
+<p></p><p>Nuestros clientes depositan su confianza en los Fondos de Balanz por nuestro profesionalismo, capacidad y por la transparencia con que manejamos sus ahorros. Nuestros Fondos son de cotización pública. De este modo, podrás seguir la evolución del precio de las cuotas partes no sólo desde nuestro sitio, durante las 24 horas del día, sino también desde los principales diarios nacionales.</p>
+
+<p>El compromiso es otro de nuestros valores más cuidados. Por eso, somos nosotros mismos los principales participantes de nuestros Fondos. El Grupo Balanz Capital fue el primer inversor en cuota partes que afianza su&nbsp;convicción en esta forma de ahorrar. Las decisiones que nuestro equipo toma en la correcta administración de los Fondos impactan del mismo modo en nuestros ahorros y en los tuyos.</p>
+
+<p>Nuestros Fondos&nbsp;siguen rigurosamente el principio de diversificación. La experiencia nos confirma&nbsp;que la única forma de participar en muy buenos negocios y al mismo tiempo acotar el riesgo es diversificar&nbsp;la compra de distintos bienes y activos.</p>
+
+<p>Te&nbsp;invitamos a invertir en nuestros Fondos para administrar tus activos profesionalmente.</p>
+<p></p>
+</div>
+</div>
+            </div>
+        </section>
+        
+
+        <!-- SCROLL TO TOP -->
+        <a href="https://www.fondosbalanz.com/fondos/embed/fondo-comun-de-inversion-invertir_global#" id="toTop"></a>
+        <!-- PRELOADER -->
+        
+        <!-- /PRELOADER -->
+        <!-- JAVASCRIPT FILES -->
+        <script type="text/javascript" src="./Balanz Retorno Total_files/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="./Balanz Retorno Total_files/jquery.themepunch.tools.min.js"></script>
+        <script type="text/javascript" src="./Balanz Retorno Total_files/jquery.themepunch.revolution.min.js"></script>
+        <script type="text/javascript" src="./Balanz Retorno Total_files/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="./Balanz Retorno Total_files/CF.min.js"></script>
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-19872546-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+    
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="8DC495FE">
+</div></form>
+
+
+<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front" tabindex="-1" role="dialog" aria-describedby="ui-id-1" style="display: none;" aria-labelledby="ui-id-2"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span id="ui-id-2" class="ui-dialog-title">balanz.com</span><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close" role="button" title="Close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">Close</span></button></div><div class="dialog-loading dialog ui-dialog-content ui-widget-content" id="ui-id-1">    <span class="message">Procesando operación. Espere.</span>    <div class="animation">        <center>            <img src="./Balanz Retorno Total_files/ajax-loading.gif" alt="loading" width="220" height="19" style="margin-bottom: 15px;">        </center>    </div></div></div><script type="text/javascript" src="./Balanz Retorno Total_files/bootstrap.min.js"></script></body></html>

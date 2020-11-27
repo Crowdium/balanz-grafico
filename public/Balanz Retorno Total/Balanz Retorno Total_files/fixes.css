@@ -1,0 +1,38 @@
+.bannerFondo {
+	padding: 125px 0;
+}
+
+@media (max-width: 992px){
+	.bannerFondo {
+	    padding: 20px 0;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	#fondos .col-md-3.col-xs-6 {
+		height: 280px;
+	    margin-bottom: 0;
+	}
+}
+
+/* Whatsapp */
+a.social-whatsapp:hover {
+	background-color: #25D366 !important;
+}
+a.social-whatsapp i.fa-whatsapp {
+	font-weight: bold;
+	font-size: 20px;
+}
+li.footer-sprite.whatsapp {
+	font-family: 'Open Sans',Arial,Helvetica,sans-serif;
+    position: relative;
+    background-image: none !important;
+}
+li.footer-sprite.whatsapp:before {
+	font: normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    left: 2px;
+    top: -2px;
+    font-size: 20px;
+}
+
