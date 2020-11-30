@@ -15,12 +15,12 @@ am4core.ready(function() {
     var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
     valueAxis.numberFormatter = new am4core.NumberFormatter();
-    valueAxis.numberFormatter.numberFormat = "#."; 
+    valueAxis.numberFormatter.numberFormat = "#"; 
 
     var series = chart.series.push(new am4charts.LineSeries());
     series.dataFields.valueY = "value";
     series.dataFields.dateX = "date";
-    series.tooltipText = "Valor m2: [bold]{value.formatNumber('#.')}[/]"
+    series.tooltipText = "Valor m2: [bold]{value.formatNumber('#')}[/]"
     series.strokeWidth = 3;
     series.minBulletDistance = 15;
     series.stroke = am4core.color("#002162");
