@@ -9,6 +9,7 @@ am4core.ready(function() {
     chart.dataSource.url = "data.json";
 
     chart.dateFormatter.inputDateFormat = "yyyy";
+    chart.responsive.enabled = true;
 
     var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
     var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
@@ -53,10 +54,47 @@ am4core.ready(function() {
     dateAxis.tooltip.background.fill = am4core.color("#CC0000");
     dateAxis.tooltip.background.stroke = am4core.color("#CC0000");
     dateAxis.tooltip.background.pointerLength = 0;
-    dateAxis.gridIntervals.setAll([
-        { timeUnit: "year", count: 1 },
-        { timeUnit: "year", count: 3 },
-    ]);
+    dateAxis.gridIntervals.setAll([{ timeUnit: "year", count: 1 },{ timeUnit: "year", count: 3 }]);
+
+    chart.responsive.rules.push({
+        relevant: function(target){
+            console.log(target);
+            if(target.pixelWidth <= 769){
+                return true;
+            }
+            return false;
+        },
+        state: function(target, stateId){
+            if(target instanceof am4charts.DateAxis){
+                let state = target.states.create(stateId);
+                state.sprite.gridIntervals.setAll([{ timeUnit: "year", count: 1 },{ timeUnit: "year", count: 5 }])
+            }
+            if (target instanceof am4charts.AxisRendererY) {
+                var state = target.states.create(stateId);
+                state.properties.inside = true;
+                return state;
+            }
+        }
+    })
+    /*
+    chart.responsive.rules.push({
+        relevant: function(target){
+            if(target.pixelWidth <= 400){
+                return true;
+            }
+            return false;
+        },
+        state: function(target, stateId){
+            if(target instanceof am4charts.DateAxis){
+                let state = target.states.create(stateId);
+                dateAxis.gridIntervals.setAll([
+                    { timeUnit: "year", count: 1 },
+                    { timeUnit: "year", count: 10 },
+                ]);
+            }
+        }
+    })
+    */
 
 
 }); // end am4core.ready()
