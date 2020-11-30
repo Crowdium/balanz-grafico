@@ -61,7 +61,6 @@ am4core.ready(function() {
 
     chart.responsive.rules.push({
         relevant: function(target){
-            console.log(target);
             if(target.pixelWidth <= 769){
                 return true;
             }
@@ -79,25 +78,28 @@ am4core.ready(function() {
             }
         }
     })
-    /*
-    chart.responsive.rules.push({
-        relevant: function(target){
-            if(target.pixelWidth <= 400){
-                return true;
-            }
-            return false;
-        },
-        state: function(target, stateId){
-            if(target instanceof am4charts.DateAxis){
-                let state = target.states.create(stateId);
-                dateAxis.gridIntervals.setAll([
-                    { timeUnit: "year", count: 1 },
-                    { timeUnit: "year", count: 10 },
-                ]);
-            }
-        }
+});
+
+$.getScript('data.json', function(data, textStatus, jqxhr){
+    data = JSON.parse(data);
+    $('#real-estate-table').append(function(){
+        data.map(obj => {
+            $(this).append(
+                $('<tr>').append(
+                    $('<td>',{
+                        class: "text-center",
+                        text: obj.date
+                    }),
+                    $('<td>',{
+                        class: "text-center",
+                        text: obj.value
+                    }),
+                    $('<td>',{
+                        class: "text-center",
+                        text: obj.variant
+                    })
+                )
+            )
+        })
     })
-    */
-
-
-}); // end am4core.ready()
+})
